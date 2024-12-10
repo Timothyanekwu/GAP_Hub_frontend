@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f8f8;
+  --foreground: #171717;
+  --font-urbanist: "Urbanist", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #f8f8f8;
+  }
+}
+
+body {
+  font-family: var(--font-urbanist);
+  color: var(--background);
+  background: var(--foreground);
+}
+
+.aspect-ratio-container {
+  aspect-ratio: 1; /* Ensures the container maintains a square ratio */
+  position: relative;
+  width: 100%; /* Fully responsive */
+}
+
+.aspect-ratio-image {
+  object-fit: cover; /* Or "contain" based on your needs */
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #d1d5db; /* Neutral-300 equivalent */
+}
