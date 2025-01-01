@@ -7,10 +7,12 @@ import GoogleIcon from "../../../../public/icons/google";
 import { useContext } from "react";
 import { AppContext } from "@/context/context";
 import { useLogin } from "@/hooks/useLogin";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { loginField, setLoginField } = useContext(AppContext);
   const { login, isLoging, error } = useLogin();
+  const router = useRouter();
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -26,9 +28,8 @@ const Login = () => {
         <div className="relative flex w-[100%] justify-center h-48 lg:h-full">
           <Image
             src="/illustrations/signIn.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center"
+            fill
+            style={{ objectFit: "contain", objectPosition: "center" }}
             quality={100}
             alt="create-account-illustration"
           />
@@ -63,41 +64,56 @@ const Login = () => {
             </div>
 
             <div className="flex flex-col items-center justify-between">
-              <div className="flex justify-between w-full mb-3 mt-2 px-5">
+              <div className="flex justify-between w-full mb-3 mt-2">
                 <div className="flex mb-1 items-center">
                   <input className=" size-4 mr-1" type="checkbox" />
                   <p className="text-sm font-semibold">Remember password</p>
                 </div>
                 <div className="flex mb-1 items-center">
-                  <p className="text-sm font-semibold underline underline-offset-2 text-[#5A00A3]">
+                  <p
+                    onClick={() => router.push("/auth/forgotPassword")}
+                    className="text-sm font-semibold underline underline-offset-2 text-[#5A00A3] cursor-pointer"
+                  >
                     Forgot?
                   </p>
                 </div>
-                <p>{error && error}</p>
+                {error && <p>{error}</p>}
               </div>
 
-              <div className="flex w-full justify-between space-x-3">
+              <div className="w-full justify-between">
                 <button
                   onClick={loginHandler}
-                  className="w-full bg-[#5A00A3] text-white rounded-full h-10 px-5 text-md cursor-pointer"
+                  className="w-full bg-[#5A00A3] text-white rounded-full h-12 px-5 text-md cursor-pointer"
                 >
                   Login
                 </button>
-                <button className="w-full border-[1.5px] border-[#5A00A3] text-[#5A00A3] rounded-full h-10 px-5 text-md cursor-pointer">
-                  Signup
-                </button>
+                <div className="w-full flex justify-center space-x-2 text-sm mt-1">
+                  <p>Don't have an account?</p>
+                  <p
+                    onClick={() => {
+                      router.push("/auth/signup");
+                    }}
+                    className="font-bold text-[#5A00A3] underline cursor-pointer"
+                  >
+                    Signup
+                  </p>
+                </div>
+
+                <p>{error && error}</p>
               </div>
             </div>
           </form>
 
-          <div className="w-full mt-3 border-[1.5px] border-[#C6C6C6] rounded-full h-10 px-5 text-md cursor-pointer flex items-center">
+          <div className="h-full w-full flex justify-between items-center mt-2">
+            <div className="h-[1px] border-b border-b-neutral-300 w-full"></div>
+            <p className="text-neutral-300 mx-3">or</p>
+            <div className="h-[1px] border-b border-b-neutral-300 w-full"></div>
+          </div>
+
+          <div className="w-full mt-3 border-[1.5px] rounded-full h-12 px-5 py-4 text-md cursor-pointer flex items-center">
             <GoogleIcon className="mr-6" width={20} height={20} />
             <p>Login with google</p>
           </div>
-
-          <p className="underline-offset-2 underline text-[#5A00A3] mx-auto mt-3 mb-10 font-medium">
-            Back Home
-          </p>
         </div>
       </div>
     </div>

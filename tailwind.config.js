@@ -12,6 +12,12 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        "center-to-top-right":
+          "linear-gradient(65deg, #5A00A3 30%, #F6E2FF 100%)",
+        "underline-gradient":
+          "linear-gradient(to right, black 70%, white 70%, white 75%, black 75%, black 90%, white 90%, white 95%, black 95%)",
+      },
     },
   },
   plugins: [],

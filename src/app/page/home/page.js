@@ -1,11 +1,15 @@
 import React from "react";
-import Header from "@/pageComponents/header";
+import Header1 from "@/pageComponents/header/header1";
+import Header2 from "@/pageComponents/header/header2";
 import Card from "@/pageComponents/card";
 
 const Home = () => {
   return (
     <div>
-      <Header />
+      <div className="sticky top-0 z-40 w-full">
+        <Header1 />
+        <Header2 />
+      </div>
 
       <Card />
     </div>

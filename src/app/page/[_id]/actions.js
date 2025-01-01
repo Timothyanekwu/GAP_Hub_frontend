@@ -38,9 +38,12 @@ const Actions = () => {
       </p>
 
       <div className="grid grid-cols-3 w-full gap-4 mt-4">
-        {card.map((item) => {
+        {card.map((item, index) => {
           return (
-            <div className="px-3 py-2 rounded-xl bg-neutral-200 flex flex-col items-center group hover:bg-[#5A00A3] cursor-pointer">
+            <div
+              key={index}
+              className="px-3 py-2 rounded-xl bg-neutral-200 flex flex-col items-center group hover:bg-[#5A00A3] cursor-pointer"
+            >
               <p className="font-semibold text-sm group-hover:text-white">
                 {item.day}
               </p>

@@ -13,9 +13,8 @@ const confirmPasword = () => {
         <div className="relative flex w-[100%] justify-center h-48 lg:h-full">
           <Image
             src="/illustrations/verifyEmail.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center"
+            fill
+            style={{ objectFit: "contain", objectPosition: "center" }}
             quality={100}
             alt="create-account-illustration"
           />
@@ -51,7 +50,7 @@ const confirmPasword = () => {
             </div>
 
             <div className="flex flex-col items-center justify-between mt-4">
-              <button className="w-full bg-[#5A00A3] text-white rounded-full h-10 px-5 text-md cursor-pointer">
+              <button className="w-full bg-[#5A00A3] text-white rounded-full h-12 px-5 text-md cursor-pointer">
                 Reset password
               </button>
             </div>

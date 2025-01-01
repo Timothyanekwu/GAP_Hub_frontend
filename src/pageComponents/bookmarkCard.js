@@ -16,7 +16,7 @@ const BookmarkCard = () => {
             quality={100}
             // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             objectFit="cover"
-            objectPosition="center"
+            style={{ objectFit: "cover", objectPosition: "center" }}
             className="rounded-lg w-full h-full"
           />
         </div>

@@ -36,7 +36,7 @@ const SideBar = () => {
             onClick={() => router.push("/page/dash/notifications")}
             className="py-5 border-b border-b-neutral-400 flex space-x-3 px-8 cursor-pointer"
           >
-            <Notification />
+            <Notification color={"black"} />
             <p>Notifications</p>
           </div>
           <div

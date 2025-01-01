@@ -57,8 +57,12 @@ const Detail2 = () => {
       <div className="mt-2">
         <p className="font-semibold">Features</p>
         <div className="flex flex-wrap">
-          {feat.map((item) => {
-            return <p className="mr-2 text-xs">-{item}</p>;
+          {feat.map((item, index) => {
+            return (
+              <p key={index} className="mr-2 text-xs">
+                -{item}
+              </p>
+            );
           })}
         </div>
       </div>

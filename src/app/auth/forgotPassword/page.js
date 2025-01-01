@@ -10,9 +10,8 @@ const ForgotPassword = () => {
         <div className="relative flex w-[100%] justify-center h-48 lg:h-full">
           <Image
             src="/illustrations/forgotPassword.png"
-            layout="fill"
-            objectFit="contain"
-            objectPosition="center"
+            fill
+            style={{ objectFit: "contain", objectPosition: "center" }}
             quality={100}
             alt="create-account-illustration"
           />
@@ -32,14 +31,10 @@ const ForgotPassword = () => {
               <FormInput placeholder={"Email"} />
             </div>
 
-            <button className="w-full bg-[#5A00A3] text-white rounded-full h-10 px-5 text-md cursor-pointer mt-5">
+            <button className="w-full bg-[#5A00A3] text-white rounded-full h-12 px-5 text-md cursor-pointer mt-5">
               Verify email
             </button>
           </form>
-
-          <p className="underline-offset-2 underline text-[#5A00A3] mx-auto mt-4 font-medium">
-            Back Home
-          </p>
         </div>
       </div>
     </div>

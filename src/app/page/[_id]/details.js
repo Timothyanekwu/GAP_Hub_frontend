@@ -13,7 +13,7 @@ const Details = () => {
       {/* First section */}
       <div className="w-full border-b border-b-neutral-400 pb-3">
         {/* Name of property */}
-        <p className="text-lg md:leading-tight xl:text-xl  font-semibold mb-3">
+        <p className="text-lg md:leading-tight xl:text-2xl  font-medium mb-3">
           1 Bedroom and Palour in Opebi Estate for Sale
         </p>
 
@@ -21,8 +21,8 @@ const Details = () => {
         <div className="flex justify-between items-center">
           <div className="mb-5">
             <p className="text-lg font-semibold"> N200,000,000</p>
-            <div className="w-min px-2 py-1 rounded-md bg-[#F6E2FF]">
-              <p className="text-[#5A00A3] text-[10px]">Negotiable</p>
+            <div className="w-max px-2 py-1 rounded-md bg-[#F6E2FF]">
+              <p className="text-[#5A00A3] text-[10px] lg:text-xs">For sale</p>
             </div>
           </div>
 
@@ -41,9 +41,12 @@ const Details = () => {
       <div className="mt-3">
         {/* tags */}
         <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-2">
-          {features.map((item) => {
+          {features.map((item, index) => {
             return (
-              <div className="bg-neutral-300 border-neutral-800 rounded-md flex items-center justify-center px-2 py-1 border">
+              <div
+                key={index}
+                className="bg-neutral-300 border-neutral-800 rounded-md flex items-center justify-center px-2 py-1 border"
+              >
                 <p className="text-[10px] xl:text-xs">{item}</p>
               </div>
             );

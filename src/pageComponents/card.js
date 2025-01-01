@@ -1,60 +1,66 @@
 import React from "react";
 import Image from "next/image";
 import Location from "../../public/icons/location";
+import Bookmark from "../../public/icons/bookmark";
 
-const Card = ({ image, name, price, address, features }) => {
+const Card = ({ name, image, price, type, location, tags, handler }) => {
+  const formattedPrice = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0,
+  }).format(price);
+
   return (
-    // <div className="flex flex-col justify-between mb-5 bg-white w-60 p-1 rounded-lg ">
-    <div className="col-span-1 w-full p-1 pb-2 cursor-pointer bg-white rounded-lg flex flex-col justify-between items-start">
-      {/* <div className="w-[100%] aspect-squrare h-[30vw] md:h-[20vw] lg:h-[15vw] xl:h-48 relative mb-2 flex bg-neutral-100 items-start rounded-t-lg">
-        <Image
-          src="/images/House.png"
-          alt="Property image"
-          fill
-          quality={100}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          style={{ objectFit: "contain", objectPosition: "top" }}
-          className="border-b border-neutral-300 pb-1"
-        />
-      </div> */}
-
+    <div
+      onClick={handler}
+      className="col-span-1 w-full p-1 pb-2 cursor-pointer bg-white rounded-lg flex flex-col justify-between items-start h-full"
+    >
       <div className="w-full aspect-ratio-container relative mb-2 flex bg-neutral-100 items-start rounded-t-lg">
-        <Image
-          src="/images/House.png"
-          alt="Property image"
-          fill
-          quality={100}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="aspect-ratio-image rounded-t-lg"
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt="Property image"
+            fill
+            quality={100}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="aspect-ratio-image rounded-t-lg"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-300 rounded-t-lg" />
+        )}
+        <div
+          aria-label="Bookmark this property"
+          className="shadow-sm hover:shadow-lg transition-all rounded-full p-2 lg:p-3 bg-white absolute -bottom-3 lg:-bottom-5 right-3"
+        >
+          <Bookmark color={"black"} className="lg:size-4 size-3 -z-10" />
+        </div>
       </div>
 
-      <div className="px-2 mb-2">
-        <div className="xl:flex w-full justify-between items-center font-semibold mb-3">
-          <p className="text-sm mb-1">Apartment Name</p>
-          <p className="text-sm">N200,000</p>
-        </div>
-        <div className="w-full items-center flex mb-4">
-          <Location width={15} height={15} />
-          <p className="font-light text-xs ml-1">
-            Plot 2, Lorem Ipsum , Lagos.
-          </p>
+      <div className="w-full px-2 mb-2 relative flex-grow flex flex-col justify-between">
+        <div>
+          <p className="text-xs md:text-base mb-1 z-40">{name}</p>
+          <div className="w-full font-semibold mb-3 flex flex-wrap justify-between items-center">
+            <p className="font-bold text-xs md:text-lg">{formattedPrice}/y</p>
+          </div>
         </div>
 
-        <div className="w-full xl:flex space-x-2 hidden">
-          <div className="px-1 py-0.5 rounded-sm bg-[#F6E2FF] flex items-center justify-center">
-            <p className="text-[8px] font-medium text-purple-900">180 sqm</p>
+        <div className="w-full flex justify-between md:space-y-0 items-center">
+          <div className="flex-grow flex flex-wrap items-center">
+            {tags?.slice(0, 3).map((tag, index) => (
+              <div
+                key={index}
+                className={`px-1 py-0.5 ${
+                  index === 0 ? "" : "border-l-[0.5px]"
+                } flex items-center justify-center h-max`}
+              >
+                <p className="text-[6px] md:text-[9px] lg:text-xs font-medium text-purple-900">
+                  {tag}
+                </p>
+              </div>
+            ))}
           </div>
-          <div className="px-1 py-0.5  rounded-sm bg-[#F6E2FF] flex items-center justify-center">
-            <p className="text-[8px] font-medium text-purple-900">2 Bedrooms</p>
-          </div>
-          <div className="px-1 py-0.5  rounded-sm bg-[#F6E2FF] flex items-center justify-center">
-            <p className="text-[8px] font-medium text-purple-900">
-              2 Bathrooms
-            </p>
-          </div>
-          <div className="px-1 py-0.5  rounded-sm bg-[#F6E2FF] flex items-center justify-center">
-            <p className="text-[8px] font-medium text-purple-900">1 Garage</p>
+          <div className="text-[#B06400] bg-[#FFD484] h-max px-3 py-0.5 text-[0.6rem]">
+            <p>{type}</p>
           </div>
         </div>
       </div>
