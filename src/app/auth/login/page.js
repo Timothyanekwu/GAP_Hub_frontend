@@ -10,7 +10,7 @@ import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const { loginField, setLoginField } = useContext(AppContext);
+  const { loginField, setLoginField, setIsAuthorized } = useContext(AppContext);
   const { login, isLoging, error } = useLogin();
   const router = useRouter();
 
@@ -20,6 +20,8 @@ const Login = () => {
 
     if (success) {
       alert("Login successful");
+      router.push("/page/listings");
+      setIsAuthorized(true);
     }
   };
   return (

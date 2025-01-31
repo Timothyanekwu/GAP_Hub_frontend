@@ -5,8 +5,26 @@ import Location from "../../../../public/icons/location";
 import Star from "../../../../public/icons/star";
 import Whatsapp from "../../../../public/icons/whatsapp";
 
-const Details = () => {
+const Details = ({ currProperty, addToBookmarks }) => {
   const features = ["120m", "1 Bedroom", "2 Bathroom", "1 Garage"];
+
+  const formattedPrice = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+    minimumFractionDigits: 0,
+  }).format(currProperty?.price);
+
+  const handleRedirect = () => {
+    const phoneNumber = "+2348143479465"; // Replace with actual number
+    const imageUrl =
+      "https://i.pinimg.com/474x/1d/7f/ee/1d7fee533036e49d3e1f824f004a5dbb.jpg"; // Hosted image URL
+    const message = `Hi GH Solutions, im interested in this property ${imageUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappUrl, "_blank"); // Redirect to WhatsApp chat
+  };
 
   return (
     <div className="bg-white w-full rounded-xl p-5">
@@ -14,34 +32,42 @@ const Details = () => {
       <div className="w-full border-b border-b-neutral-400 pb-3">
         {/* Name of property */}
         <p className="text-lg md:leading-tight xl:text-2xl  font-medium mb-3">
-          1 Bedroom and Palour in Opebi Estate for Sale
+          {currProperty?.name}
         </p>
 
         {/* Pricing and actions */}
         <div className="flex justify-between items-center">
           <div className="mb-5">
-            <p className="text-lg font-semibold"> N200,000,000</p>
+            <p className="text-lg font-semibold"> {formattedPrice}</p>
             <div className="w-max px-2 py-1 rounded-md bg-[#F6E2FF]">
-              <p className="text-[#5A00A3] text-[10px] lg:text-xs">For sale</p>
+              <p className="text-[#5A00A3] text-[10px] lg:text-xs">
+                For {currProperty?.type}
+              </p>
             </div>
           </div>
 
           <div className="flex ">
-            <Share width={20} height={20} className="mr-5" />
-            <Bookmark width={20} height={20} color={"black"} />
+            {/* <Share width={20} height={20} className="mr-5" /> */}
+            <Bookmark
+              width={20}
+              height={20}
+              color={"black"}
+              onClick={addToBookmarks}
+              className="cursor-pointer"
+            />
           </div>
         </div>
         {/* Address */}
         <div className="flex items-center">
           <Location width={15} height={15} />
-          <p className="text-xs ml-2">Moore Rd, Block D, Flat 7, Yaba, Lagos</p>
+          <p className="text-xs ml-2">{currProperty?.location}</p>
         </div>
       </div>
       {/* second part */}
       <div className="mt-3">
         {/* tags */}
         <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 gap-2">
-          {features.map((item, index) => {
+          {currProperty?.tags.map((item, index) => {
             return (
               <div
                 key={index}
@@ -73,7 +99,10 @@ const Details = () => {
               Book Apartment
             </p>
           </div>
-          <div className="w-full h-10 flex items-center justify-center border-2 border-[#01D01C] rounded-xl">
+          <div
+            onClick={handleRedirect}
+            className="w-full h-10 flex items-center justify-center border-2 border-[#01D01C] rounded-xl cursor-pointer"
+          >
             <Whatsapp width={25} height={25} className="fill-[#01D01C]" />
             <p className="text-[#01D01C] ml-2 text-sm md:text-xs">Start chat</p>
           </div>

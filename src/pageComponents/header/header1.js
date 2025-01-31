@@ -9,11 +9,9 @@ import Profile from "../../../public/icons/profile";
 import Search from "../../../public/icons/search";
 import Filter from "../../../public/icons/filter";
 import { useContext } from "react";
-import { AppContext } from "@/context/context";
 import { useRouter } from "next/navigation";
 
-const Header1 = () => {
-  const { filterModal, setFilterModal } = useContext(AppContext);
+const Header1 = ({ isAuthorized, profile }) => {
   const router = useRouter();
   const nav = [
     {
@@ -32,6 +30,11 @@ const Header1 = () => {
       name: "Contact",
       route: "/page/contact",
     },
+  ];
+
+  const icons = [
+    { icon: Bookmark, action: () => router.push("/page/dash/bookmarks") },
+    { icon: Notification },
   ];
 
   return (
@@ -62,14 +65,15 @@ const Header1 = () => {
       </div>
 
       {/* Icons and profile */}
-      <div className="hidden lg:flex items-center h-full justify-between w-[28%]">
-        <div className="flex items-center justify-between w-28 mr-5">
-          {[Bookmark, Message, Notification].map((Icon, index) => (
+      <div className="hidden lg:flex items-center h-full space-x-8 w-[28%]">
+        <div className="flex items-center space-x-3 mr-5">
+          {icons.map((icon, index) => (
             <div
               key={index}
+              onClick={icon.action}
               className="flex items-center justify-center p-1 border rounded-full border-[#868686] hover:shadow-lg group hover:bg-[#5A00A3] transition-all cursor-pointer"
             >
-              <Icon
+              <icon.icon
                 width={18}
                 height={18}
                 // color="black"
@@ -78,12 +82,23 @@ const Header1 = () => {
             </div>
           ))}
         </div>
-        <div className="flex w-36 items-center">
-          <div className="bg-[#8042B1] p-1 rounded-full flex items-center justify-center mr-3">
-            <Profile color={"white"} width={18} height={18} />
+        {isAuthorized ? (
+          <div className="flex w-36 items-center">
+            <div className="bg-[#8042B1] p-1 rounded-full flex items-center justify-center mr-3">
+              <Profile color={"white"} width={18} height={18} />
+            </div>
+            <p className="hidden sm:block">{profile?.username}</p>
           </div>
-          <p className="hidden sm:block">Samuel Jones</p>
-        </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => router.push("/auth/login")}
+              className="bg-[#5A00A3] px-4 py-2 rounded-lg text-white cursor-pointer"
+            >
+              Login
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

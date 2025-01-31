@@ -15,6 +15,7 @@ export const useSignup = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({
         username,
         email,
@@ -30,8 +31,8 @@ export const useSignup = () => {
     }
 
     if (response.ok) {
-      localStorage.setItem("user", JSON.stringify(result));
-      dispatch({ type: "SIGNUP", payload: result });
+      // localStorage.setItem("user", JSON.stringify(result));
+      // dispatch({ type: "LOGIN", payload: result });
       setIsLoading(false);
       return true;
     }

@@ -1,18 +1,40 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Location from "../../public/icons/location";
 import Bookmark from "../../public/icons/bookmark";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { AppContext } from "@/context/context";
 
-const Card = ({ name, image, price, type, location, tags, handler }) => {
+const Card = ({
+  name,
+  image,
+  price,
+  type,
+  location,
+  tags,
+  _id,
+  addToBookmarks,
+}) => {
+  const { isAuthorized } = useContext(AppContext);
+
   const formattedPrice = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
     minimumFractionDigits: 0,
   }).format(price);
 
+  const router = useRouter();
+
+  const curProp = () => {
+    router.push(`/page/${_id}`);
+  };
+
   return (
     <div
-      onClick={handler}
+      onClick={curProp}
       className="col-span-1 w-full p-1 pb-2 cursor-pointer bg-white rounded-lg flex flex-col justify-between items-start h-full"
     >
       <div className="w-full aspect-ratio-container relative mb-2 flex bg-neutral-100 items-start rounded-t-lg">
@@ -28,12 +50,15 @@ const Card = ({ name, image, price, type, location, tags, handler }) => {
         ) : (
           <div className="w-full h-full bg-gray-300 rounded-t-lg" />
         )}
-        <div
-          aria-label="Bookmark this property"
-          className="shadow-sm hover:shadow-lg transition-all rounded-full p-2 lg:p-3 bg-white absolute -bottom-3 lg:-bottom-5 right-3"
-        >
-          <Bookmark color={"black"} className="lg:size-4 size-3 -z-10" />
-        </div>
+        {isAuthorized && (
+          <div
+            onClick={(e) => addToBookmarks(e, _id)}
+            aria-label="Bookmark this property"
+            className="shadow-sm hover:shadow-lg transition-all rounded-full p-2 lg:p-3 bg-white absolute -bottom-3 lg:-bottom-5 right-3"
+          >
+            <Bookmark color={"black"} className="lg:size-4 size-3 -z-10" />
+          </div>
+        )}
       </div>
 
       <div className="w-full px-2 mb-2 relative flex-grow flex flex-col justify-between">

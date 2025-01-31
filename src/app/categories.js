@@ -21,7 +21,7 @@ const Categories = () => {
 
         <div className="flex space-x-2 items-center px-5">
           <p className="text-sm font-bold">Explore categories</p>
-          <Back color={black} className="rotate-180" />
+          <Back color={"black"} className="rotate-180" />
         </div>
       </div>
       <div className="flex overflow-x-auto w-[100vw] mx-auto lg:w-full xl:w-[70vw] lg:h-[50vw] xl:h-[30vw] snap-x snap-mandatory space-x-5 lg:space-x-0 pb-3 mt-3 pl-5 lg:pl-0 lg:grid grid-cols-3 grid-rows-4 gap-3">

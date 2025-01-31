@@ -1,18 +1,7 @@
-import localFont from "next/font/local";
 import { ContextProvider } from "@/context/context";
 import { AuthContextProvider } from "@/context/userContext";
+import ClientLayout from "./clientLayout";
 import "./globals.css";
-
-const urbanist = localFont({
-  src: "../../public/fonts/urbanist/Urbanist-VariableFont_wght.ttf",
-  variable: "--font-urbanist",
-  weight: "100 900",
-});
-const urbanistItalic = localFont({
-  src: "../../public/fonts/urbanist/Urbanist-Italic-VariableFont_wght.ttf",
-  variable: "--font-urbanist-italic",
-  weight: "100 900",
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -24,11 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthContextProvider>
         <ContextProvider>
-          <body
-            className={`${urbanist.variable} ${urbanistItalic.variable} antialiased`}
-          >
-            {children}
-          </body>
+          <ClientLayout>{children}</ClientLayout>
         </ContextProvider>
       </AuthContextProvider>
     </html>

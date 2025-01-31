@@ -54,7 +54,7 @@ const Detail2 = () => {
         </div>
       </div>
 
-      <div className="mt-2">
+      {/* <div className="mt-2">
         <p className="font-semibold">Features</p>
         <div className="flex flex-wrap">
           {feat.map((item, index) => {
@@ -65,7 +65,7 @@ const Detail2 = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

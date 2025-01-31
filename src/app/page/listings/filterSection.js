@@ -21,15 +21,6 @@ const FilterSection = () => {
   } = useContext(AppContext);
   const [currCat, setCurrCat] = useState("");
 
-  // const categories = [
-  //   "Houses & Apartments",
-  //   "Land & Plots",
-  //   "Shops and Warehouses",
-  //   "Hostels",
-  // ];
-
-  const propertyType = ["Bungalow", "Single room", "Mini - Flat"];
-
   const propertyFeatures = ["Bedroom", "Bathroom", "Terrace", "Jacuzzi"];
 
   const priceRange = [
@@ -134,21 +125,7 @@ const FilterSection = () => {
             );
           })}
       </div>
-      <div className="mt-5">
-        <p className="font-semibold">Property Type</p>
-        {propertyType.map((prop, index) => {
-          return (
-            <div
-              className="flex w-full h-9 justify-between items-center"
-              key={index}
-            >
-              <p className="text-[#5A5A5A] text-sm">{prop}</p>
-              <Angle />
-            </div>
-          );
-        })}
-        <p className="underline text-[#5A00A3]">Show more</p>
-      </div>
+
       <div className="mt-5">
         <p className="font-semibold">Property Feature</p>
         {propertyFeatures.map((prop, index) => {

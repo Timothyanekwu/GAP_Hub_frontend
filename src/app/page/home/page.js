@@ -8,7 +8,6 @@ const Home = () => {
     <div>
       <div className="sticky top-0 z-40 w-full">
         <Header1 />
-        <Header2 />
       </div>
 
       <Card />

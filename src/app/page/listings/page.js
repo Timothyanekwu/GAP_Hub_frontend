@@ -1,5 +1,4 @@
 import React from "react";
-import Header1 from "@/pageComponents/header/header1";
 import Header2 from "@/pageComponents/header/header2";
 import Card from "@/pageComponents/card";
 import Sub from "@/pageComponents/sub";
@@ -10,10 +9,7 @@ import Footer from "@/pageComponents/footer";
 const Home = () => {
   return (
     <div>
-      <div className="sticky top-0 z-40 w-full">
-        <Header1 />
-        <Header2 />
-      </div>
+      <div className="sticky top-0 z-40 w-full"></div>
       <div className="px-2 xl:px-20 mt-10 max-w-[1280px] mx-auto">
         <div className="xl:flex w-full xl:space-x-5">
           <FilterSection />

@@ -49,7 +49,6 @@ body {
 .aspect-ratio-container {
   aspect-ratio: 1; /* Ensures the container maintains a square ratio */
   position: relative;
-  width: 100%; /* Fully responsive */
 }
 
 .aspect-ratio-image {
