@@ -34,7 +34,7 @@ const Property = () => {
       // get similar listings
       const fetcher = async () => {
         const res = await fetch(
-          `http://localhost:7000/app/api/similarListings?productId=${_id}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/app/api/similarListings?productId=${_id}`
         );
 
         const result = res.ok && (await res.json());
@@ -55,7 +55,7 @@ const Property = () => {
   useEffect(() => {
     const fetcher = async () => {
       const res = await fetch(
-        `http://localhost:7000/app/api/comment?product_id=${_id}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/app/api/comment?product_id=${_id}`
       );
       const result = await res.json();
       console.log(result);

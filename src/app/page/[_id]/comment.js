@@ -17,19 +17,21 @@ const Comment = ({ comments, _id, setComments, isAuthorized }) => {
   const handleComment = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:7000/v1/api/comment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // authorization: `Bearer ${user.token}`,
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        comment: commentInput,
-        rating: rating,
-        product_id: _id,
-      }),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/comment`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          comment: commentInput,
+          rating: rating,
+          product_id: _id,
+        }),
+      }
+    );
 
     const result = await res.json();
 

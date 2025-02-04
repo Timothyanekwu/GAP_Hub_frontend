@@ -64,9 +64,12 @@ export const ContextProvider = ({ children }) => {
   // verify token
   useEffect(() => {
     const verifier = async () => {
-      const res = await fetch("http://localhost:7000/v1/api/verifyToken", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/verifyToken`,
+        {
+          credentials: "include",
+        }
+      );
 
       const result = await res.json();
 
@@ -84,7 +87,9 @@ export const ContextProvider = ({ children }) => {
       {
         try {
           const res = await fetch(
-            `http://localhost:7000/app/api/getProperties?${searchParams.toString()}`
+            `${
+              process.env.NEXT_PUBLIC_BASE_URL
+            }/app/api/getProperties?${searchParams.toString()}`
           );
           if (!res.ok) {
             throw new Error("Network response was not ok");
@@ -104,7 +109,9 @@ export const ContextProvider = ({ children }) => {
   // get filters
   useEffect(() => {
     const fetcher = async () => {
-      const res = await fetch("http://localhost:7000/app/api/filters");
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/app/api/filters`
+      );
       const result = await res.json();
       setCategories(result[0].categories);
     };
@@ -121,7 +128,9 @@ export const ContextProvider = ({ children }) => {
 
     const getter = async () => {
       const res = await fetch(
-        `http://localhost:7000/v1/api/bookmarks?${searchParams.toString()}`,
+        `${
+          process.env.NEXT_PUBLIC_BASE_URL
+        }/v1/api/bookmarks?${searchParams.toString()}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -142,12 +151,15 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (!isAuthorized) return;
     const getter = async () => {
-      const res = await fetch("http://localhost:7000/v1/api/profile", {
-        // headers: {
-        //   authorization: `Bearer ${user.token}`,
-        // },
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/profile`,
+        {
+          // headers: {
+          //   authorization: `Bearer ${user.token}`,
+          // },
+          credentials: "include",
+        }
+      );
 
       const result = await res.json();
 
@@ -164,13 +176,16 @@ export const ContextProvider = ({ children }) => {
   // This is a tempoary handler and will be removed later on
   const addProperty = async () => {
     try {
-      const res = await fetch("http://localhost:7000/app/api/addProperty", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(addProp),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/app/api/addProperty`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(addProp),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to add property");
@@ -241,15 +256,18 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
 
     try {
-      const res = await fetch("http://localhost:7000/v1/api/bookmarks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: `Bearer ${user.token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ productId: _id }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/bookmarks`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${user.token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify({ productId: _id }),
+        }
+      );
 
       const result = await res.json();
 
@@ -268,15 +286,18 @@ export const ContextProvider = ({ children }) => {
 
   const updateUsername = async (username) => {
     try {
-      const res = await fetch("http://localhost:7000/v1/api/updateUsername", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: `Bearer ${user.token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ username }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/updateUsername`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${user.token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify({ username }),
+        }
+      );
 
       const result = await res.json();
 
@@ -290,15 +311,18 @@ export const ContextProvider = ({ children }) => {
 
   const updatePhone = async (phone) => {
     try {
-      const res = await fetch("http://localhost:7000/v1/api/updatePhone", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: `Bearer ${user.token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ phone }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/updatePhone`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${user.token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify({ phone }),
+        }
+      );
 
       const result = await res.json();
 
@@ -312,15 +336,18 @@ export const ContextProvider = ({ children }) => {
 
   const updateAddress = async (address) => {
     try {
-      const res = await fetch("http://localhost:7000/v1/api/updateAddress", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: `Bearer ${user.token}`,
-        },
-        credentials: "include",
-        body: JSON.stringify({ address }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/updateAddress`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // authorization: `Bearer ${user.token}`,
+          },
+          credentials: "include",
+          body: JSON.stringify({ address }),
+        }
+      );
 
       const result = await res.json();
 
@@ -334,14 +361,17 @@ export const ContextProvider = ({ children }) => {
 
   const updateEmail = async (email) => {
     try {
-      const res = await fetch("http://localhost:7000/v1/api/updateEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/updateEmail`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const result = await res.json();
 
@@ -355,14 +385,17 @@ export const ContextProvider = ({ children }) => {
 
   const updatePassword = async (currentPassword, newPassword) => {
     try {
-      const res = await fetch("http://localhost:7000/v1/api/updatePassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ currentPassword, newPassword }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/updatePassword`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ currentPassword, newPassword }),
+        }
+      );
 
       const result = await res.json();
 
@@ -381,7 +414,7 @@ export const ContextProvider = ({ children }) => {
   const deleteBookmark = async (productId) => {
     try {
       const res = await fetch(
-        `http://localhost:7000/v1/api/bookmarks?productId=${productId}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/v1/api/bookmarks?productId=${productId}`,
         {
           method: "DELETE",
           // headers: {

@@ -2,6 +2,7 @@ import { ContextProvider } from "@/context/context";
 import { AuthContextProvider } from "@/context/userContext";
 import ClientLayout from "./clientLayout";
 import "./globals.css";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,11 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <AuthContextProvider>
-        <ContextProvider>
-          <ClientLayout>{children}</ClientLayout>
-        </ContextProvider>
-      </AuthContextProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <AuthContextProvider>
+          <ContextProvider>
+            <ClientLayout>{children}</ClientLayout>
+          </ContextProvider>
+        </AuthContextProvider>
+      </Suspense>
     </html>
   );
 }
