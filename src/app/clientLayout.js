@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Header1 from "@/pageComponents/header/header1";
 import Header2 from "@/pageComponents/header/header2";
 import localFont from "next/font/local";
@@ -21,7 +21,7 @@ const urbanistItalic = localFont({
 const ClientLayout = ({ children }) => {
   const { isAuthorized, profile } = useContext(AppContext);
   return (
-    <body
+    <div
       className={`${urbanist.variable} ${urbanistItalic.variable} antialiased`}
     >
       <div className="sticky top-0 w-full z-40">
@@ -30,7 +30,7 @@ const ClientLayout = ({ children }) => {
       </div>
 
       {children}
-    </body>
+    </div>
   );
 };
 
