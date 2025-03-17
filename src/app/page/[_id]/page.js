@@ -70,7 +70,7 @@ const Property = () => {
     <div>
       <div className="sticky top-0 z-40 w-full"></div>
       <div className="w-full md:max-w-[640px] lg:max-w-[1200px] md:mx-auto xl:px-16 px-6">
-        <div className="justify-center mt-5 xl:mt-10 xl:mb-20 mb-8 grid grid-col-1 lg:grid-cols-5 gap-x-3">
+        <div className="justify-center mt-5 xl:mt-10 xl:mb-20 mb-8 md:grid grid-col-1 lg:grid-cols-5 md:gap-x-3">
           <ImageSection currProperty={currProperty} />
           {/* ---------------- */}
           <div className="col-span-2 mt-4 lg:mt-0">

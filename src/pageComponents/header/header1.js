@@ -9,10 +9,20 @@ import Profile from "../../../public/icons/profile";
 import Search from "../../../public/icons/search";
 import Filter from "../../../public/icons/filter";
 import { useContext } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import Options from "../../../public/icons/options";
+import Cancel from "../../../public/icons/cancel";
+import Link from "next/link";
 
 const Header1 = ({ isAuthorized, profile }) => {
+  const [view, setView] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setView(false);
+  }, [pathname]);
+
   const nav = [
     {
       name: "Home",
@@ -33,12 +43,12 @@ const Header1 = ({ isAuthorized, profile }) => {
   ];
 
   const icons = [
-    { icon: Bookmark, action: () => router.push("/page/dash/bookmarks") },
-    { icon: Notification },
+    { icon: Bookmark, route: "/page/dash/bookmarks" },
+    { icon: Notification, route: "/page/dash/notifications" },
   ];
 
   return (
-    <div className="bg-white w-full h-16 px-4 sm:px-10 lg:px-28 flex justify-between items-center border-b">
+    <div className="bg-white w-full h-16 px-4 sm:px-10 lg:px-28 flex justify-between items-center">
       {/* Logo */}
       <div className="relative flex w-20 sm:w-24 justify-center h-[80%]">
         <Image
@@ -52,25 +62,51 @@ const Header1 = ({ isAuthorized, profile }) => {
       </div>
 
       {/* Menu links */}
-      <div className="hidden lg:flex w-[30%] justify-around items-center h-full text-sm">
+
+      <div
+        className={`${
+          !view && "hidden"
+        } flex flex-col md:flex md:flex-row md:space-x-4 lg:space-x-6 justify-none items-start md:justify-around md:items-center fixed md:relative top-0 left-0 h-screen w-screen bg-white p-10 md:p-0 md:w-fit md:h-full text-sm z-50`}
+      >
+        <div
+          onClick={() => setView(!view)}
+          className="w-full flex justify-end md:hidden mb-5"
+        >
+          <Cancel width={34} height={29} />
+        </div>
+
+        {/* links */}
         {nav.map((item, index) => (
-          <p
-            onClick={() => router.push(item.route)}
+          <Link
+            href={item.route}
             key={index}
-            className="hover:bg-[#8042B1] hover:px-2 hover:py-1 rounded-lg hover:text-white hover:cursor-pointer transition-all duration-300"
+            className="w-full py-5 md:px-0 md:py-0 flex items-center px-3 hover:bg-neutral-100 md:hover:bg-[#8042B1] md:text-base text-xl font-medium lg:font-normal md:hover:px-2 md:hover:py-1 md:rounded-lg md:hover:text-white hover:cursor-pointer transition-all duration-300 border-b md:border-b-0"
           >
             {item.name}
-          </p>
+          </Link>
         ))}
+        {isAuthorized ? (
+          <Link href="/">
+            <div className="md:hidden w-full py-5 md:px-0 md:py-0 flex items-center px-3 hover:bg-neutral-100 md:hover:bg-[#8042B1] md:text-base text-xl font-medium lg:font-normal md:hover:px-2 md:hover:py-1 md:rounded-lg md:hover:text-white hover:cursor-pointer transition-all duration-300 border-b md:border-b-0">
+              Logout
+            </div>
+          </Link>
+        ) : (
+          <Link href="/auth/login">
+            <div className="md:hidden w-full py-5 md:px-0 md:py-0 flex items-center px-3 hover:bg-neutral-100 md:hover:bg-[#8042B1] md:text-base text-xl font-medium lg:font-normal md:hover:px-2 md:hover:py-1 md:rounded-lg md:hover:text-white hover:cursor-pointer transition-all duration-300 border-b md:border-b-0">
+              Login
+            </div>
+          </Link>
+        )}
       </div>
 
       {/* Icons and profile */}
-      <div className="hidden lg:flex items-center h-full space-x-8 w-[28%]">
-        <div className="flex items-center space-x-3 mr-5">
+      <div className="hidden md:flex items-center h-full space-x-3 w-[28%]">
+        <div className="flex items-center space-x-3">
           {icons.map((icon, index) => (
-            <div
+            <Link
+              href={icon.route}
               key={index}
-              onClick={icon.action}
               className="flex items-center justify-center p-1 border rounded-full border-[#868686] hover:shadow-lg group hover:bg-[#5A00A3] transition-all cursor-pointer"
             >
               <icon.icon
@@ -79,7 +115,7 @@ const Header1 = ({ isAuthorized, profile }) => {
                 // color="black"
                 className="group-hover:stroke-white stroke-black "
               />
-            </div>
+            </Link>
           ))}
         </div>
         {isAuthorized ? (
@@ -99,6 +135,15 @@ const Header1 = ({ isAuthorized, profile }) => {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Options */}
+
+      <div
+        onClick={() => setView(!view)}
+        className="md:hidden flex items-center justify-center h-full w-10"
+      >
+        <Options width={20} height={20} />
       </div>
     </div>
   );

@@ -4,13 +4,20 @@ import React from "react";
 import SortBy from "../../public/icons/sortBy";
 import { useContext, useState } from "react";
 import { AppContext } from "@/context/context";
+import Filter from "../../public/icons/filter";
 
 const Sub = () => {
-  const { handleSort } = useContext(AppContext);
+  const { handleSort, filterModal, setFilterModal } = useContext(AppContext);
   const sortOptions = ["priceAsc", "priceDesc"];
   const [view, setView] = useState(false);
+
   return (
-    <div className="w-full flex justify-end h-10 px-5 bg-white mb-4 rounded-md items-center">
+    <div className="w-full flex justify-between h-10 px-5 bg-white mb-4 rounded-md items-center">
+      <Filter
+        stroke="black"
+        className="lg:hidden mr-6 size-5"
+        onClick={() => setFilterModal(true)}
+      />
       <div className="flex justify-end cursor-pointer">
         <p className="text-xs xl:text-base font-semibold">Sort by:</p>
         <div

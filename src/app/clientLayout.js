@@ -6,6 +6,7 @@ import Header2 from "@/pageComponents/header/header2";
 import localFont from "next/font/local";
 import { useContext } from "react";
 import { AppContext } from "@/context/context";
+import { usePathname } from "next/navigation";
 
 const urbanist = localFont({
   src: "../../public/fonts/urbanist/Urbanist-VariableFont_wght.ttf",
@@ -20,13 +21,15 @@ const urbanistItalic = localFont({
 
 const ClientLayout = ({ children }) => {
   const { isAuthorized, profile } = useContext(AppContext);
+
+  const pathname = usePathname();
   return (
     <div
       className={`${urbanist.variable} ${urbanistItalic.variable} antialiased`}
     >
       <div className="sticky top-0 w-full z-40">
         <Header1 isAuthorized={isAuthorized} profile={profile} />
-        <Header2 />
+        {pathname.endsWith("listings") && <Header2 />}
       </div>
 
       {children}

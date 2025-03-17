@@ -38,11 +38,10 @@ const FilterSection = () => {
       } xl:block overflow-y-auto top-0 left-0 w-full md:w-[60%] lg:w-[50%] h-screen z-50 xl:z-10 xl:relative xl:w-[25%] p-5 bg-white xl:h-max`}
     >
       <div className="w-full flex justify-between items-center">
-        <div className="bg-[#5A00A3] rounded-md px-4 py-1 flex items-center justify-around cursor-pointer">
-          <Filter />
-          <p className="ml-2 text-white font-semibold">Filter</p>
+        <div className="flex space-x-2 items-center">
+          <Filter stroke="black" />
+          <p className="ml-2 font-semibold text-xl">Filter</p>
         </div>
-        <Options className="cursor-pointer" width={18} height={18} />
       </div>
       <div className="py-3 mt-3 w-full flex items-center xl:hidden">
         <Back color={"black"} onClick={() => setFilterModal(false)} />

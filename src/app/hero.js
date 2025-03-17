@@ -19,8 +19,10 @@ const Hero = () => {
       <div className="px-6 sm:pl-14 pb-10 md:w-[50%]">
         {/* Main and sub text */}
         <div className="text-white">
-          <p className="text-4xl lg:text-6xl">Find Your Dream Home Today!</p>
-          <p className="text-base leading-5 mt-3">
+          <p className="text-4xl lg:text-6xl text-[#5A00A3]">
+            Find Your Dream Home Today!
+          </p>
+          <p className="text-base text-black leading-5 mt-3">
             Explore the best properties for sale and rent. Tailored to fit your
             lifestyle and budget.
           </p>
