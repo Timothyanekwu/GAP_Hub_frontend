@@ -15,7 +15,8 @@ const Details = ({ currProperty, addToBookmarks }) => {
   }).format(currProperty?.price);
 
   const handleRedirect = () => {
-    const phoneNumber = "+2348143479465"; // Replace with actual number
+    // const phoneNumber = "+2348143479465";
+    const phoneNumber = "+2347048995533";
     const imageUrl =
       "https://i.pinimg.com/474x/1d/7f/ee/1d7fee533036e49d3e1f824f004a5dbb.jpg"; // Hosted image URL
     const message = `Hi GH Solutions, im interested in this property ${imageUrl}`;
